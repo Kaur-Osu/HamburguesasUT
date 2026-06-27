@@ -49,18 +49,18 @@ function Login() {
     <div className="hero-bg-wrapper">
       <Navbar />
 
-      <div className="login-admin-container">
+      <div className="login-container">
         <img
-          src="/Lalokita_Logo_Letras.png"
+          src="src/HamburguesasUT.png"
           alt="HamburguesasUT"
-          className="login-admin-logo"
+          className="login-logo"
         />
 
-        <div className="login-admin-card">
+        <div className="login-card">
           <h1>Iniciar sesión</h1>
 
           {mensaje && (
-            <p className="login-admin-msg">
+            <p className="login-message">
               {mensaje}
             </p>
           )}
@@ -86,7 +86,7 @@ function Login() {
               required
             />
 
-            <button type="submit" className="btn-promociones">
+            <button type="submit" className="btn-primary">
               {loading ? "Ingresando..." : "Ingresar"}
             </button>
           </form>

@@ -1,25 +1,26 @@
-import { useEffect, useState } from "react";
 import Navbar from "../components/Navbar";
 import FooterBar from "../components/FooterBar";
 
-
 function Productos() {
   return (
-    <div className="MENU">
- 
-<div className="hero-bg-wrapper">
-  <Navbar />
-  <section className="hero-bg">
-    <div className="hero-bg-container">
-        <p>PRODUCTOS</p>
-    </div>
-  </section>
-</div>      
-
-    <FooterBar />
+    <div className="productos-wrapper">
+      <div className="hero-bg-wrapper">
+        <Navbar />
+        <section className="productos-card">
+          <img
+            src="src/HamburguesasUT.png"
+            alt="HamburguesasUT Logo"
+            className="productos-logo"
+          />
+          <h1 className="productos-title">Nuestros Productos</h1>
+          <p className="productos-message">
+            Descubre el menú completo de HamburguesasUT 🍔
+          </p>
+        </section>
+      </div>
+      <FooterBar />
     </div>
   );
-
 }
 
 export default Productos;
