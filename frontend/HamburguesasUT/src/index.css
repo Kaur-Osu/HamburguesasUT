@@ -272,6 +272,26 @@ body {
   font-size: 13px;
   color: #ccc;
 }
+/* =========================
+   FOOTER LINK
+========================= */
+.footer-link {
+  color: #ffffff;          /* Teal institucional */
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s, transform 0.2s;
+}
+
+.footer-link:hover {
+  color: #d8d8d8;          /* Teal más oscuro */
+  text-decoration: underline;
+  transform: translateY(-2px);
+}
+
+.footer-link:active {
+  color: #004d40;          /* Teal profundo */
+  transform: scale(0.98);
+}
 
 /* =========================
    RESPONSIVE

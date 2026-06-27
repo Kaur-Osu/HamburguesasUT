@@ -1,9 +1,11 @@
 import { FaClock, FaPhone } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function FooterBar() {
   return (
     <footer className="footer-container">
       <div className="footer-top">
+
         {/* HORARIO */}
         <div className="footer-item">
           <FaClock className="footer-icon" />
@@ -13,14 +15,21 @@ function FooterBar() {
           </div>
         </div>
 
-        {/* TELÉFONOS */}
+        {/* TELÉFONO */}
         <div className="footer-item">
           <FaPhone className="footer-icon" />
           <div>
             <h4 className="footer-title">TELÉFONOS</h4>
-            <p className="footer-text">Llámanos</p>
+
+          <a
+            href="tel:+526535185146"
+            className="footer-link"
+          >
+            +52 653 518 5146
+          </a>
           </div>
         </div>
+
       </div>
 
       {/* MAPA */}
@@ -35,17 +44,22 @@ function FooterBar() {
           referrerPolicy="no-referrer-when-downgrade"
           src="https://www.google.com/maps?q=32.43808661574545,-114.71682816419917&z=18&output=embed"
         />
+
         <p className="footer-address">
           📍 Av. Jalisco, 83457 San Luis Río Colorado, Son.
         </p>
       </div>
 
+      {/* FOOTER BOTTOM */}
       <div className="footer-bottom">
-        <img
-          src="src/HamburguesasUT.png"
-          alt="HamburguesasUT"
-          className="footer-logo"
-        />
+        <Link to="/">
+          <img
+            src="src/HamburguesasUT.png"
+            alt="HamburguesasUT Logo"
+            className="navbar-logo"
+          />
+        </Link>
+
         <p className="footer-copy">
           © {new Date().getFullYear()} HamburguesasUT. Todos los derechos reservados.
         </p>
