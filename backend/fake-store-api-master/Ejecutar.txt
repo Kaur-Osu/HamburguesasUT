@@ -1,0 +1,36 @@
+"C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db
+npm install mongoose
+
+npm start
+http://localhost:8765
+
+
+
+MONGOSH INSERT
+//prenderlo
+mongosh
+
+//seleccionar db
+use fake_store
+... show collections
+
+
+//insertar
+db.products.insertOne({ name: "test product", price: 10 })
+
+//Ver colecciones
+show collections
+
+//ver productos
+db.products.find().pretty()
+
+//modificar producto
+db.products.updateOne(
+  { _id: ObjectId("6a3f654894ad51bb746c4bd0") },
+  { $set: { price: 50, name: "updated product" } }
+)
+
+//borrar
+db.products.deleteOne({
+  _id: ObjectId("6a3f654894ad51bb746c4bd0")
+})
