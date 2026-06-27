@@ -1,22 +1,30 @@
+Editar para tu mongo:
 "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db
-npm install mongoose
 
+INSTALAR EN LA CARPETA
+npm install mongoose
 npm start
 http://localhost:8765
 
 
 
 MONGOSH INSERT
-//prenderlo
+//Paso 1 prender mongo
 mongosh
 
-//seleccionar db
+//Paso 2 seleccionar db
 use fake_store
 ... show collections
 
 
-//insertar
+//Paso 3 insertar
 db.products.insertOne({ name: "test product", price: 10 })
+
+//Paso 4 borrar
+db.products.deleteOne({
+  _id: ObjectId("6a3f654894ad51bb746c4bd0")
+})
+
 
 //Ver colecciones
 show collections
@@ -29,8 +37,3 @@ db.products.updateOne(
   { _id: ObjectId("6a3f654894ad51bb746c4bd0") },
   { $set: { price: 50, name: "updated product" } }
 )
-
-//borrar
-db.products.deleteOne({
-  _id: ObjectId("6a3f654894ad51bb746c4bd0")
-})
