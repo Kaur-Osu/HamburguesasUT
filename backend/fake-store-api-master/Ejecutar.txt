@@ -1,5 +1,5 @@
 Editar para tu mongo:
-"C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db
+& "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db
 
 INSTALAR EN LA CARPETA
 npm install mongoose

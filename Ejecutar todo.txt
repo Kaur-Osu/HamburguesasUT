@@ -1,0 +1,12 @@
+MONGO
+Editar para tu mongo:
+& "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db
+
+\backend\fake-store-api-master
+npm start
+
+\backend\hamburguesasut-backend
+node -r dotenv/config server.js
+
+\frontend\HamburguesasUT
+npm run dev
