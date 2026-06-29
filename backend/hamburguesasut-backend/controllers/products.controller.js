@@ -1,22 +1,30 @@
 import * as storeService from "../services/store.service.js";
 
 export const getProducts = async (req, res) => {
+  try {
+    const products = await storeService.getProducts();
 
-    try {
+    const clean = products.map(p => ({
+      id: p._id?.toString?.() || p._id,  // 🔥 FIX REAL
+      name: p.name,
+      price: p.price,
+      category: p.category,
+      subcategory: p.subcategory,
+      description: p.description,
+      image: p.image,
+      stock: p.stock,
+      rating: p.rating,
+      includes: p.includes
+    }));
 
-        const products = await storeService.getProducts();
+    res.json(clean);
 
-        res.json(products);
-
-    } catch (error) {
+  } catch (error) {
     console.log("ERROR REAL:", error.message);
 
     res.status(500).json({
-        mensaje: "Error al obtener productos",
-        error: error.message
+      mensaje: "Error al obtener productos",
+      error: error.message
     });
-
-
-    }
-
+  }
 };

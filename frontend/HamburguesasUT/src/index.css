@@ -406,130 +406,346 @@ body {
 /* =========================
    PRODUCTOS
 ========================= */
-.productos-wrapper {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
+/* =========================
+   LAYOUT GENERAL
+========================= */
 
-/* Hero Wrapper */
 .hero-bg-wrapper {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
-  background: linear-gradient(
-    135deg,
-    #008080,   /* Teal institucional */
-    #555555    /* Gris corporativo */
-  );
+  background: linear-gradient(135deg, #008080, #555555);
 }
 
-/* Productos Card */
-.productos-card {
-  flex: 1;
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+
+.productos-container {
+  padding: 25px;
+  max-width: 1200px;
+  margin: auto;
+  width: 100%;
+}
+
+.productos-title {
+  text-align: center;
+  font-size: 34px;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+}
+
+/* =========================
+   TABS CATEGORÍAS
+========================= */
+
+.categoria-tabs {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.tab-btn {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.85);
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.25s ease;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+
+.tab-btn:hover {
+  transform: translateY(-2px);
+  background: white;
+}
+
+.tab-btn.active {
+  background: #ff4d2e;
+  color: white;
+  box-shadow: 0 8px 20px rgba(255,77,46,0.3);
+}
+
+/* =========================
+   GRID RESPONSIVE
+========================= */
+
+.productos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 20px;
+}
+
+/* =========================
+   CARD PRODUCTO
+========================= */
+
+.producto-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+}
 
-  background: #ffffff;
-  border-radius: 16px;
-  padding: 40px;
-  margin: 40px auto;
-  max-width: 600px;
-  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+.producto-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.2);
+}
+
+.producto-img {
+  width: 100%;
+  height: 170px;
+  object-fit: cover;
+}
+
+/* =========================
+   CONTENIDO CARD
+========================= */
+
+.producto-body {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.producto-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: #222;
+}
+
+.producto-price {
+  font-weight: bold;
+  color: #ff4d2e;
+  font-size: 40px;
+    font-weight: 900;
+}
+
+.producto-desc {
+  font-size: 15px;
+  color: #555;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.producto-extra {
+  font-size: 12px;
+  color: #777;
+}
+
+/* =========================
+   BOTÓN
+========================= */
+
+.producto-btn {
+  margin-top: auto;
+  padding: 10px;
+  border: none;
+  background: #ff4d2e;
+  color: white;
+  font-weight: 700;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.producto-btn:hover {
+  background: #e63e1f;
+  transform: scale(1.02);
+}
+
+/* =========================
+   LOADING / ERROR
+========================= */
+
+.productos-msg {
   text-align: center;
-  border-top: 6px solid #008080;
-}
-
-/* Logo */
-.productos-logo {
-  width: 160px;
-  margin-bottom: 20px;
-}
-
-/* Title */
-.productos-title {
-  color: #008080;
-  font-size: 26px;
-  margin-bottom: 15px;
-}
-
-/* Message */
-.productos-message {
-  background: #e0f7fa; /* Teal muy claro */
-  color: #006064;      /* Teal oscuro */
-  padding: 12px;
-  border-radius: 8px;
+  color: white;
   font-size: 16px;
+  margin-top: 20px;
 }
 
-/* Responsive */
+.productos-msg.error {
+  color: #ffb3b3;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
 @media (max-width: 768px) {
-  .productos-card {
-    padding: 28px;
-    margin: 20px;
+  .productos-title {
+    font-size: 26px;
   }
 
-  .productos-logo {
-    width: 130px;
+  .tab-btn {
+    font-size: 12px;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .productos-container {
+    padding: 15px;
   }
 
   .productos-title {
     font-size: 22px;
   }
 
-  .productos-message {
-    font-size: 14px;
+  .producto-img {
+    height: 150px;
   }
 }
+/* =========================
+   STARS (RATING)
+========================= */
 
-@media (max-width: 480px) {
-  .productos-card {
-    width: 100%;
-    margin: 15px;
-    padding: 22px;
-  }
-
-  .productos-title {
-    font-size: 20px;
-  }
-
-  .productos-message {
-    font-size: 13px;
-  }
-}
-.productos-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+.stars-container {
+  display: flex;
+  gap: 2px;
+  margin-top: 5px;
 }
 
-.producto-card {
-  background: white;
-  padding: 15px;
-  border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.star {
+  position: relative;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
 }
 
-.producto-img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
+.star-empty {
+  color: #ccc;
+}
+
+.star-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gold;
+  overflow: hidden;
+}
+
+/* =========================
+   RATING TEXT
+========================= */
+
+.producto-rating-text {
+  font-size: 15px;
+  color: #666;
+  font-weight: 700;
+  margin-top: 3px;
+}
+/* =========================
+   STARS HOVER GRANDES
+========================= */
+
+.stars-container {
+  display: flex;
+  gap: 2px;
+  margin-top: 5px;
+  transition: transform 0.2s;
+}
+
+.stars-container.hover-big:hover {
+  transform: scale(1.1);
+}
+
+.star {
+  position: relative;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.star-empty {
+  color: #ccc;
+}
+
+.star-filled {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: gold;
+  overflow: hidden;
+}
+
+/* =========================
+   OUT OF STOCK
+========================= */
+
+.producto-stock.out-stock {
+  color: #ff3b30;
+  font-weight: 900;
+}
+
+/* =========================
+   CART CONTROLS (+ -)
+========================= */
+
+.cart-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ff4d2e;
+  color: white;
   border-radius: 10px;
+  padding: 6px 10px;
+  margin-top: 10px;
 }
 
-.categoria-section {
-  margin-bottom: 40px;
-}
-
-.categoria-title {
-  margin: 20px 0 10px;
-  font-size: 22px;
+.cart-controls button {
+  background: white;
+  border: none;
+  color: #ff4d2e;
   font-weight: bold;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
 }
+
+.cart-controls button:hover {
+  transform: scale(1.1);
+}
+/* =========================
+   STOCK
+========================= */
+
+.producto-stock {
+  font-size: 15px;
+  font-weight: 700;
+  margin-top: 5px;
+  color: #444;
+}
+
+.producto-stock.low-stock {
+  color: #e53935;
+  font-weight: 700;
+}
+
+/* =========================
+   BUTTON DISABLED
+========================= */
+
+.producto-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 /* =========================
    CARRITO
 ========================= */
