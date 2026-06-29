@@ -3,6 +3,7 @@ import api from "../api/api";
 import Navbar from "../components/Navbar";
 import FooterBar from "../components/FooterBar";
 import { useRef } from "react";
+import BreadcrumbProductos from "../components/BreadcrumbProductos";
 
 function Productos() {
   const [productos, setProductos] = useState([]);
@@ -326,7 +327,11 @@ const dy = endY - startY.current;
             Limpiar
           </button>
         </div>
-
+<BreadcrumbProductos
+  search={search}
+  categoria={categoria}
+  orden={orden}
+/>
         {/* ========================= */}
         {loading && <p className="productos-msg">Cargando...</p>}
         {error && <p className="productos-msg error">{error}</p>}
