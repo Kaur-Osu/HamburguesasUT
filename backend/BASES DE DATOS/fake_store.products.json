@@ -1,5 +1,4 @@
-[
-{
+[{
   "_id": {
     "$oid": "6a419614cb70d3f5ea3794db"
   },
@@ -103,7 +102,7 @@
   "price": 90,
   "category": "comida",
   "subcategory": "hamburgers",
-  "description": "Pechuga empanizada",
+  "description": "Pechuga empanizada, tomate y lechuga",
   "image": "images/comida/5.png",
   "stock": 22,
   "rating": [
@@ -125,7 +124,7 @@
   "price": 80,
   "category": "comida",
   "subcategory": "hamburgers",
-  "description": "Hamburguesa vegetariana",
+  "description": "Hecha de avena, soja, lentejas, alubias, quinoa, lechuga, aguacate y tomate",
   "image": "images/comida/6.png",
   "stock": 10,
   "rating": [
@@ -253,7 +252,7 @@
     "$oid": "6a419624cb70d3f5ea3794e7"
   },
   "name": "Malteada Vainilla",
-  "price": 45,
+  "price": 60,
   "category": "bebidas",
   "subcategory": "milkshake",
   "image": "images/bebidas/6.png",
@@ -373,8 +372,8 @@
   "_id": {
     "$oid": "6a41962bcb70d3f5ea3794ee"
   },
-  "name": "Galletas",
-  "price": 20,
+  "name": "Galleta adornada",
+  "price": 40,
   "category": "postres",
   "image": "images/postres/6.png",
   "stock": 40,
@@ -388,5 +387,4 @@
       "value": 3
     }
   ]
-}
-]
+}]
