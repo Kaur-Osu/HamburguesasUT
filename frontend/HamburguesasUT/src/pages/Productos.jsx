@@ -10,6 +10,13 @@ function Productos() {
 
   const [carrito, setCarrito] = useState({});
 
+  // =========================
+  // FILTROS
+  // =========================
+  const [search, setSearch] = useState("");
+  const [categoria, setCategoria] = useState("todos");
+  const [orden, setOrden] = useState("");
+
   useEffect(() => {
     const cargarProductos = async () => {
       try {
@@ -17,7 +24,8 @@ function Productos() {
         setError("");
 
         const response = await api.get("/products");
-        console.log("📦 PRODUCTS RAW:", response.data);
+
+        console.log("📦 PRODUCTS:", response.data);
 
         setProductos(response.data);
       } catch (err) {
@@ -32,17 +40,13 @@ function Productos() {
   }, []);
 
   // =========================
-  // ⭐ RATING PROMEDIO
+  // RATING
   // =========================
   const getAverageRating = (ratings = []) => {
     if (!Array.isArray(ratings) || ratings.length === 0) return 0;
-    const sum = ratings.reduce((acc, r) => acc + (r.value || 0), 0);
-    return sum / ratings.length;
+    return ratings.reduce((a, r) => a + (r.value || 0), 0) / ratings.length;
   };
 
-  // =========================
-  // ⭐ ESTRELLAS
-  // =========================
   const Stars = ({ rating = 0 }) => (
     <div className="stars-container hover-big">
       {[1, 2, 3, 4, 5].map((i) => {
@@ -61,8 +65,10 @@ function Productos() {
   );
 
   // =========================
-  // 🛒 CARRITO
+  // CARRITO
   // =========================
+  const getId = (p) => p._id || p.name;
+
   const agregar = (id, stock) => {
     setCarrito((prev) => {
       const actual = prev[id] || 0;
@@ -74,57 +80,80 @@ function Productos() {
   const quitar = (id) => {
     setCarrito((prev) => {
       const actual = prev[id] || 0;
-
       if (actual <= 1) {
         const copy = { ...prev };
         delete copy[id];
         return copy;
       }
-
       return { ...prev, [id]: actual - 1 };
     });
   };
 
   // =========================
-  // 🧠 KEY SEGURA (IMPORTANTE)
+  // LIMPIAR FILTROS
   // =========================
-  const getId = (p) => p._id || p.id || p.name;
+  const limpiar = () => {
+    setSearch("");
+    setCategoria("todos");
+    setOrden("");
+  };
 
   // =========================
-  // 📦 AGRUPAR
+  // FILTRADO + ORDEN
   // =========================
-  const productosPorCategoria = productos.reduce((acc, p) => {
-    const cat = p.category || "otros";
-    if (!acc[cat]) acc[cat] = [];
-    acc[cat].push(p);
-    return acc;
-  }, {});
+  const productosProcesados = productos
+    .filter((p) => {
+      const matchSearch = p.name
+        .toLowerCase()
+        .includes(search.toLowerCase());
+
+      const matchCat =
+        categoria === "todos" || p.category === categoria;
+
+      return matchSearch && matchCat;
+    })
+    .sort((a, b) => {
+      if (orden === "precio-asc") return a.price - b.price;
+      if (orden === "precio-desc") return b.price - a.price;
+      if (orden === "nombre-asc") return a.name.localeCompare(b.name);
+      if (orden === "nombre-desc") return b.name.localeCompare(a.name);
+      return 0;
+    });
 
   // =========================
-  // 🧩 PRODUCTO
+  // AGRUPAR
+  // =========================
+  const productosPorCategoria = productosProcesados.reduce(
+    (acc, p) => {
+      const cat = p.category || "otros";
+      if (!acc[cat]) acc[cat] = [];
+      acc[cat].push(p);
+      return acc;
+    },
+    {}
+  );
+
+  // =========================
+  // PRODUCTO
   // =========================
   const renderProducto = (p) => {
     const id = getId(p);
-
     const rating = getAverageRating(p.rating);
     const cantidad = carrito[id] || 0;
-    const sinStock = p.stock <= 0;
 
-    console.log("🧩 RENDER:", p.name, "ID:", id);
+    const sinStock = p.stock <= 0;
 
     return (
       <div key={id} className="producto-card">
-
-        <img src={p.image} alt={p.name} className="producto-img" />
+        <img src={p.image} className="producto-img" />
 
         <div className="producto-body">
-
           <h3 className="producto-name">{p.name}</h3>
 
           <p className="producto-price">${p.price}</p>
 
           <p className="producto-extra">
-            <b>Categoría:</b> {p.category}
+            Categoría: {p.category}
           </p>
 
           <Stars rating={rating} />
@@ -155,7 +184,6 @@ function Productos() {
               <button onClick={() => agregar(id, p.stock)}>+</button>
             </div>
           )}
-
         </div>
       </div>
     );
@@ -168,13 +196,57 @@ function Productos() {
       <div className="productos-container">
         <h1 className="productos-title">Menú</h1>
 
-        {loading && <p className="productos-msg">Cargando productos...</p>}
+        {/* =========================
+            FILTROS BAR
+        ========================= */}
+        <div className="filtros-bar">
+
+          <input
+            className="search-input"
+            placeholder="Buscar producto..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
+
+          <select
+            className="filter-select"
+            value={categoria}
+            onChange={(e) => setCategoria(e.target.value)}
+          >
+            <option value="todos">Mostrar todos</option>
+            <option value="comida">Comida</option>
+            <option value="bebidas">Bebidas</option>
+            <option value="postres">Postres</option>
+          </select>
+
+          <select
+            className="filter-select"
+            value={orden}
+            onChange={(e) => setOrden(e.target.value)}
+          >
+            <option value="">Sin ordenar</option>
+            <option value="precio-asc">Precio ↓</option>
+            <option value="precio-desc">Precio ↑</option>
+            <option value="nombre-asc">Nombre A-Z</option>
+            <option value="nombre-desc">Nombre Z-A</option>
+          </select>
+
+          <button className="clear-btn" onClick={limpiar}>
+            Limpiar
+          </button>
+        </div>
+
+        {/* ========================= */}
+        {loading && <p className="productos-msg">Cargando...</p>}
         {error && <p className="productos-msg error">{error}</p>}
 
-        {!loading && !error &&
+        {!loading &&
+          !error &&
           Object.entries(productosPorCategoria).map(([cat, items]) => (
             <div key={cat}>
-              <h2 className="categoria-title">{cat.toUpperCase()}</h2>
+              <h2 className="categoria-title">
+                {cat.toUpperCase()}
+              </h2>
 
               <div className="productos-grid">
                 {items.map(renderProducto)}
