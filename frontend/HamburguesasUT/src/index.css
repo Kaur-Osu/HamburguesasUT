@@ -206,7 +206,58 @@ body {
   color: #008080;
   font-weight: bold;
 }
+/* =========================
+   RESPONSIVE NAVBAR
+========================= */
 
+@media (max-width: 768px) {
+
+  .navbar-header{
+    padding:12px;
+  }
+
+  .navbar-content{
+    flex-direction:column;
+    gap:15px;
+    width:100%;
+  }
+
+  .navbar-logo{
+    height:50px;
+  }
+
+  .navbar{
+    width:100%;
+  }
+
+  .navbar-links{
+    width:100%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:0;
+    margin:0;
+  }
+
+  .navbar-item{
+    flex:1 1 40%;
+    display:flex;
+    justify-content:center;
+  }
+
+  .navbar-link{
+    width:100%;
+    text-align:center;
+    padding:10px;
+    font-size:15px;
+  }
+
+}
 /* =========================
    FOOTER
 ========================= */
@@ -798,8 +849,415 @@ body {
 /* efecto hover */
 .categoria-ti
 
+/*=========================
+      LIGHTBOX
+==========================*/
 
+.lightbox{
+    position: fixed;
+    inset: 0;
 
+    width: 100vw;
+    height: 100vh;
+
+    background: rgba(0,0,0,.94);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 99999;
+
+    overflow: hidden;
+
+    touch-action: none;
+
+    overscroll-behavior: contain;
+}
+.lightbox-img{
+
+    width: auto;
+    height: auto;
+
+    width: clamp(250px, 70vw, 700px);
+    max-height: 55vh;
+
+    object-fit: contain;
+
+    border-radius: 18px;
+
+    box-shadow: 0 20px 60px rgba(0,0,0,.6);
+
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-user-drag: none;
+
+}
+@media (max-width: 768px){
+
+    .lightbox-img{
+
+        width: 90vw;
+        max-height: 40vh;
+
+    }
+
+}
+
+.lightbox-arrow{
+
+    position:absolute;
+
+    top:50%;
+    transform:translateY(-50%);
+
+    width:65px;
+    height:65px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:rgba(255,255,255,.15);
+
+    color:white;
+
+    font-size:42px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.lightbox-arrow:hover{
+
+    background:#ff4d2e;
+
+    transform:translateY(-50%) scale(1.12);
+
+}
+
+.lightbox-arrow.left{
+
+    left:35px;
+
+}
+
+.lightbox-arrow.right{
+
+    right:35px;
+
+}
+
+.producto-img{
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.producto-img:hover{
+
+    transform:scale(1.04);
+
+}
+
+@keyframes fadeIn{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.lightbox-img{
+
+max-width:95%;
+max-height:75%;
+
+}
+
+.lightbox-arrow{
+
+width:50px;
+height:50px;
+
+font-size:30px;
+
+}
+
+.lightbox-arrow.left{
+
+left:10px;
+
+}
+
+.lightbox-arrow.right{
+
+right:10px;
+
+}
+
+}
+
+/* =========================
+   LIGHTBOX
+========================= */
+
+.lightbox{
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,.92);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    z-index:99999;
+
+    animation:fade .25s;
+}
+
+@keyframes fade{
+
+from{
+opacity:0;
+}
+
+to{
+opacity:1;
+}
+
+}
+
+.lightbox-img{
+
+max-width:90vw;
+max-height:90vh;
+
+border-radius:16px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.6);
+
+object-fit:contain;
+
+animation:zoom .25s;
+}
+
+@keyframes zoom{
+
+from{
+transform:scale(.8);
+opacity:0;
+}
+
+to{
+transform:scale(1);
+opacity:1;
+}
+
+}
+
+.lightbox-arrow{
+
+position:absolute;
+top:50%;
+transform:translateY(-50%);
+
+width:65px;
+height:65px;
+
+border:none;
+border-radius:50%;
+
+background:rgba(255,255,255,.15);
+
+backdrop-filter:blur(6px);
+
+color:white;
+
+font-size:38px;
+
+cursor:pointer;
+
+transition:.25s;
+}
+
+.lightbox-arrow:hover{
+
+background:#ff4d2e;
+
+transform:translateY(-50%) scale(1.1);
+
+}
+
+.lightbox-arrow.left{
+
+left:35px;
+
+}
+
+.lightbox-arrow.right{
+
+right:35px;
+
+}
+
+@media(max-width:700px){
+
+.lightbox-arrow{
+
+width:50px;
+height:50px;
+font-size:28px;
+
+}
+
+.lightbox-arrow.left{
+
+left:10px;
+
+}
+
+.lightbox-arrow.right{
+
+right:10px;
+
+}
+
+.lightbox-img{
+
+max-width:96vw;
+max-height:75vh;
+
+}
+
+}
+
+/* CONTENEDOR */
+
+.lightbox-content{
+
+display:flex;
+flex-direction:column;
+
+align-items:center;
+
+max-width:95vw;
+max-height:92vh;
+
+margin-top:20px;
+
+width:100%;
+max-width:700px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(12px);
+
+padding:20px;
+
+border-radius:18px;
+
+color:white;
+
+text-align:left;
+
+box-sizing:border-box;
+
+}
+
+/* TITULO */
+
+.lightbox-info h2{
+
+font-size:34px;
+margin-bottom:8px;
+
+}
+
+/* PRECIO */
+
+.lightbox-price{
+
+font-size:42px;
+font-weight:900;
+
+color:#ffb347;
+
+margin-bottom:15px;
+
+}
+
+/* TEXTOS */
+
+.lightbox-info p{
+
+margin:8px 0;
+
+font-size:18px;
+
+line-height:1.5;
+
+}
+
+.lightbox-info h4{
+
+margin-top:18px;
+
+margin-bottom:8px;
+
+color:#ffb347;
+
+}
+
+/* CELULAR */
+
+@media(max-width:768px){
+
+.lightbox-content{
+
+max-width:100vw;
+padding:15px;
+
+}
+
+.lightbox-info{
+
+padding:16px;
+
+}
+
+.lightbox-info h2{
+
+font-size:26px;
+
+}
+
+.lightbox-price{
+
+font-size:34px;
+
+}
+
+.lightbox-info p{
+
+font-size:16px;
+
+}
+
+}
 /* =========================
    CARRITO
 ========================= */
@@ -897,4 +1355,14 @@ body {
   .carrito-message {
     font-size: 13px;
   }
+}
+
+html,
+body{
+    overflow-x: hidden;
+}
+
+body.lightbox-open{
+    overflow: hidden;
+    touch-action: none;
 }
