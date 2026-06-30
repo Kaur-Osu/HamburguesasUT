@@ -354,7 +354,186 @@ body {
     gap: 15px;
   }
 }
+/*=========================
+      NOT FOUND
+=========================*/
 
+.notfound-container{
+
+    flex:1;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:40px 20px;
+}
+
+.notfound-card{
+
+    width:100%;
+    max-width:650px;
+
+    padding:45px 35px;
+
+    text-align:center;
+
+    border-radius:24px;
+
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(16px);
+
+    box-shadow:0 20px 50px rgba(0,0,0,.25);
+
+    color:white;
+}
+
+.notfound-logo{
+
+    width:140px;
+    margin-bottom:25px;
+
+    animation:floatLogo 3s ease-in-out infinite;
+}
+
+.notfound-code{
+
+    display:inline-block;
+
+    padding:8px 18px;
+
+    margin-bottom:20px;
+
+    border-radius:999px;
+
+    background:linear-gradient(135deg,#ff4d2e,#ff8a00);
+
+    font-size:14px;
+    font-weight:800;
+
+    letter-spacing:2px;
+}
+
+.notfound-title{
+
+    font-size:48px;
+    font-weight:900;
+
+    margin-bottom:18px;
+}
+
+.notfound-text{
+
+    font-size:18px;
+    line-height:1.7;
+
+    color:rgba(255,255,255,.92);
+
+    margin-bottom:35px;
+}
+
+.notfound-buttons{
+
+    display:flex;
+    justify-content:center;
+    gap:18px;
+
+    flex-wrap:wrap;
+}
+
+.notfound-btn{
+
+    text-decoration:none;
+
+    padding:14px 24px;
+
+    border:none;
+
+    border-radius:14px;
+
+    font-size:16px;
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+}
+
+.notfound-btn.primary{
+
+    background:#ff4d2e;
+    color:white;
+}
+
+.notfound-btn.primary:hover{
+
+    background:#e63e1f;
+
+    transform:translateY(-3px);
+}
+
+.notfound-btn.secondary{
+
+    background:white;
+    color:#333;
+}
+
+.notfound-btn.secondary:hover{
+
+    transform:translateY(-3px);
+
+    background:#f3f3f3;
+}
+
+@keyframes floatLogo{
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-10px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .notfound-card{
+
+        padding:30px 22px;
+    }
+
+    .notfound-logo{
+
+        width:110px;
+    }
+
+    .notfound-title{
+
+        font-size:34px;
+    }
+
+    .notfound-text{
+
+        font-size:16px;
+    }
+
+    .notfound-buttons{
+
+        flex-direction:column;
+    }
+
+    .notfound-btn{
+
+        width:100%;
+    }
+
+}
 /* =========================
    HOME
 ========================= */
