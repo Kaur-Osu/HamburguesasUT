@@ -3,11 +3,14 @@ Editar para tu mongo:
 cd "C:\Program Files\MongoDB\Server\8.0\bin"
 & "C:\Program Files\MongoDB\Server\8.0\bin\mongod.exe" --dbpath C:\data\db
 
-\backend\fake-store-api-master
+cd backend\fake-store-api-master
 npm start
 
-\backend\hamburguesasut-backend
+cd backend\DummyJSON-master
+node -r dotenv/config index.js
+
+cd backend\hamburguesasut-backend
 node -r dotenv/config server.js
 
-\frontend\HamburguesasUT
+cd frontend\HamburguesasUT
 npm run dev

@@ -1,13 +1,25 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 function Navbar() {
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const cerrarSesion = () => {
+    localStorage.removeItem("user");
+    navigate("/");
+    window.location.reload();
+  };
+
   const links = [
     { nombre: "Inicio", ruta: "/" },
     { nombre: "Menú", ruta: "/menu" },
     { nombre: "Carrito", ruta: "/carrito" },
-    { nombre: "Login", ruta: "/login" }
+    user
+      ? { nombre: "Mi Perfil", ruta: "/perfil" }
+      : { nombre: "Login", ruta: "/login" }
   ];
 
   return (
@@ -37,6 +49,18 @@ function Navbar() {
                 </Link>
               </li>
             ))}
+
+            {user && (
+              <li className="navbar-item">
+                <button
+                  type="button"
+                  className="navbar-link navbar-logout-btn"
+                  onClick={cerrarSesion}
+                >
+                  Cerrar sesión
+                </button>
+              </li>
+            )}
           </ul>
         </nav>
       </div>

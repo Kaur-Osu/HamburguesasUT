@@ -2,13 +2,13 @@ import Navbar from "../components/Navbar";
 import FooterBar from "../components/FooterBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import apiUsers from "../api/apiUsers";
+import api from "../api/api";
 
 function Login() {
   const navigate = useNavigate();
 
-  const [correoElectronico, setCorreoElectronico] = useState("");
-  const [contrasena, setContrasena] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -19,16 +19,13 @@ function Login() {
       setLoading(true);
       setMensaje("");
 
-      const response = await apiUsers.post("/auth/login", {
-        correoElectronico,
-        contrasena
+      const response = await api.post("/users/login", {
+        email,
+        password
       });
 
       // Guardar usuario (o token si tu API lo regresa después)
-      localStorage.setItem(
-        "usuario",
-        JSON.stringify(response.data)
-      );
+      localStorage.setItem("user",JSON.stringify(response.data));
 
       setMensaje("Login correcto");
 
@@ -50,11 +47,6 @@ function Login() {
       <Navbar />
 
       <div className="login-container">
-        <img
-          src="src/HamburguesasUT.png"
-          alt="HamburguesasUT"
-          className="login-logo"
-        />
 
         <div className="login-card">
           <h1>Iniciar sesión</h1>
@@ -69,9 +61,9 @@ function Login() {
             <input
               type="email"
               placeholder="Correo electrónico"
-              value={correoElectronico}
+              value={email}
               onChange={(e) =>
-                setCorreoElectronico(e.target.value)
+                setEmail(e.target.value)
               }
               required
             />
@@ -79,9 +71,9 @@ function Login() {
             <input
               type="password"
               placeholder="Contraseña"
-              value={contrasena}
+              value={password}
               onChange={(e) =>
-                setContrasena(e.target.value)
+                setPassword(e.target.value)
               }
               required
             />

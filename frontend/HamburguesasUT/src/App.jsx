@@ -5,7 +5,8 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Productos from "./pages/Productos";
 import Carrito from "./pages/Carrito";
-
+import Perfil from "./pages/Perfil";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 /*PAGINA ERROR */
 import NotFound from "./pages/NotFound";
@@ -25,22 +26,36 @@ function App() {
                 element={<Home />}
             />
 
-            {/* MODULO 4: LOGIN */}
-            <Route
-                path="/login"
-                element={<Login />}
-            />
-
             {/* MODULO 2: CATALOGO */}
             <Route
                 path="/menu"
                 element={<Productos />}
             />
 
-            {/* MODULO 3: CARRITO */}
+            {/* MODULO 3: CARRITO (PROTEGIDO) */}
             <Route
                 path="/carrito"
-                element={<Carrito />}
+                element={
+                    <ProtectedRoute>
+                        <Carrito />
+                    </ProtectedRoute>
+                }
+            />
+
+            {/* MODULO 4: LOGIN */}
+            <Route
+                path="/login"
+                element={<Login />}
+            />
+
+            {/* MODULO 4a: PERFIL */}
+            <Route
+                path="/perfil"
+                element={
+                    <ProtectedRoute>
+                        <Perfil />
+                    </ProtectedRoute>
+                }
             />
 
             <Route
